@@ -38,4 +38,9 @@ export class TodoListService {
   remove(index: number): void {
     this.list.splice(index, 1);
   }
+
+  getWithCompleted(completed: boolean): Todo[] {
+    return this.list.filter(todo => todo.done === completed);
+  }
+
 }

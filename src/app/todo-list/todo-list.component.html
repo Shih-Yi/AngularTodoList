@@ -47,4 +47,14 @@
   </section>
   <!-- 清單區域結束 -->
 
+  <footer
+    class="footer"
+    *ngIf="getList().length"
+  >
+      <span class="todo-count">
+        <strong>{{ getRemainingList().length }}</strong>
+        {{ getRemainingList().length > 1 ? 'items' : 'item'}} left
+      </span>
+  </footer>
+
 </section>

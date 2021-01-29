@@ -60,4 +60,8 @@ export class TodoListComponent implements OnInit {
     todo.editable = false;
   }
 
+  getRemainingList(): Todo[] {
+    return this.todoListService.getWithCompleted(false);
+  }
+
 }
