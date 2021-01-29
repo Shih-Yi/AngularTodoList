@@ -38,4 +38,8 @@ export class Todo {
     this.title = title;
   }
 
+  setCompleted(completed: boolean): void {
+    this.completed = completed;
+  }
+
 }
