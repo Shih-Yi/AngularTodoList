@@ -112,4 +112,8 @@ export class TodoListComponent implements OnInit {
   checkStatus(status: number): boolean {
     return this.status === status;
   }
+
+  removeCompleted(): void {
+    this.todoListService.removeComplted();
+  }
 }
