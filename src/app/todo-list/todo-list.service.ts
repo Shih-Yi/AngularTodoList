@@ -34,4 +34,8 @@ export class TodoListService {
   getList(): Todo[] {
     return this.list;
   }
+
+  remove(index: number): void {
+    this.list.splice(index, 1);
+  }
 }

@@ -28,6 +28,7 @@
           <label>{{ todo.getTitle() }}</label>
           <button
             class="destroy"
+            (click)="remove(i)"
           ></button>
         </div>
       </li>
