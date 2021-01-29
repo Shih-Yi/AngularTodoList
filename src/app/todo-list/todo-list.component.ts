@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { TodoListService } from './todo-list.service';
 import { Todo } from './todo.model';
 
+import { TodoStatusType } from './todo-status-type.enum'
+
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
@@ -27,7 +29,27 @@ export class TodoListComponent implements OnInit {
   }
 
   getList(): Todo[] {
-    return this.todoListService.getList();
+
+    let list: Todo[] = [];
+
+    switch (this.status) {
+
+      case TodoStatusType.Active:
+        list = this.getRemainingList();
+        break;
+
+      case TodoStatusType.Completed:
+        list = this.getCompletedList();
+        break;
+
+      default:
+        list = this.todoListService.getList();
+        break;
+
+    }
+
+    return list;
+
   }
 
   edit(todo: Todo): void {
@@ -60,8 +82,34 @@ export class TodoListComponent implements OnInit {
     todo.editable = false;
   }
 
+  /**
+   * 待辦事項狀態的列舉
+   *
+   * @memberof TodoListComponent
+   */
+  todoStatusType = TodoStatusType;
+
+  /**
+   * 目前狀態
+   *
+   * @private
+   * @memberof TodoListComponent
+   */
+  private status = TodoStatusType.All;
+
   getRemainingList(): Todo[] {
     return this.todoListService.getWithCompleted(false);
   }
 
+  getCompletedList(): Todo[] {
+    return this.todoListService.getWithCompleted(true);
+  }
+
+  setStatus(status: number): void {
+    this.status = status;
+  }
+
+  checkStatus(status: number): boolean {
+    return this.status === status;
+  }
 }
